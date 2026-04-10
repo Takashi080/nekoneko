@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Wellness Care | 猫専門の健康と愛情ケア</title>
+    <!-- Google Fonts: 陽だまりのような温かいフォントを使用 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons: シンプルで可愛いアイコン -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        pet: {
+                            bg: '#FFFbf2',      // 陽だまりのようなクリーム色
+                            primary: '#F59E0B', // 温かみのあるアンバー（琥珀色）
+                            primaryHover: '#D97706',
+                            text: '#5c4b43',    // 柔らかいブラウンのテキスト
+                            accent: '#10B981',  // 健康を連想させる優しいグリーン
+                            light: '#FEF3C7',   // 薄いイエロー
+                            card: '#FFFFFF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { color: #5c4b43; background-color: #FFFbf2; }
+        
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(255, 251, 242, 0.95) 0%, rgba(255, 251, 242, 0.7) 50%, rgba(255, 251, 242, 0.1) 100%);
+        }
+        @media (max-width: 768px) {
+            .hero-gradient {
+                background: linear-gradient(to bottom, rgba(255, 251, 242, 0.8) 0%, rgba(255, 251, 242, 0.95) 100%);
+            }
+        }
+        .section-title-line {
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 4px;
+            background-color: #F59E0B;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- ナビゲーションバー -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- ロゴ -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-cat text-4xl text-pet-primary"></i>
+                    <span class="font-bold text-2xl tracking-wider text-pet-text">Cat Wellness Care</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">健康の考え方</a>
+                    <a href="#lifestage" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">年齢別ケア</a>
+                    <a href="#category" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">毎日の仕組み</a>
+                    <a href="#articles" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">獣医療コラム</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-pet-text hover:text-pet-primary">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section class="relative bg-pet-bg overflow-hidden h-[500px] md:h-[600px] flex items-center">
+        <!-- 背景画像：陽だまりの猫 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="日向ぼっこする猫" class="w-full h-full object-cover object-center" />
+        </div>
+        <div class="absolute inset-0 z-10 hero-gradient"></div>
+        
+        <div class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-xl">
+                <span class="inline-block py-1 px-3 rounded-full bg-pet-accent/20 text-pet-accent font-bold text-sm mb-4">
+                    獣医学的アプローチ × 優しい暮らし
+                </span>
+                <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+                    「痛みを隠す」猫だからこそ。<br>
+                    気合いではなく、<br>
+                    <span class="text-pet-primary">「仕組み」</span>で守る健康。
+                </h1>
+                <p class="text-lg md:text-xl mb-8 leading-relaxed opacity-90 font-medium">
+                    野生のなごりで、不調を限界まで隠してしまう猫たち。<br>
+                    だからこそ、飼い主がプレッシャーを感じて見張るのではなく、毎日の「ごはん」や「トイレ」を優れたアイテムに置き換える。それが、一番の予防医療です。
+                </p>
+                <a href="#category" class="inline-flex items-center gap-2 bg-pet-primary hover:bg-pet-primaryHover text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">
+                    健康を支えるアイテムを見る
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 共感・お悩みセクション (獣医学的インプットの昇華) -->
+    <section id="about" class="py-16 md:py-24 bg-white relative">
+        <div class="absolute top-0 right-10 text-pet-light opacity-30 text-9xl -z-10 transform -translate-y-1/2">
+            <i class="ph-fill ph-stethoscope"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 inline-block relative">
+                「もっと早く気づいてあげれば…」を防ぐために
+                <div class="section-title-line"></div>
+            </h2>
+            <p class="mt-6 opacity-80 leading-relaxed max-w-2xl mx-auto">
+                病気が進行してからでは、治療の選択肢が狭まり、猫も人も苦しい思いをします。<br>
+                現代の獣医学が推奨する、家庭で意識すべき3つのポイントをご紹介します。
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mt-12 text-left">
+                <div class="bg-pet-bg p-6 rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition">
+                    <div class="text-pet-primary text-3xl mb-4"><i class="ph-fill ph-drop"></i></div>
+                    <p class="font-bold text-lg mb-2">腎臓・尿路疾患への備え</p>
+                    <p class="text-sm opacity-80 leading-relaxed">猫の宿命とも言える腎臓トラブル（慢性腎不全など）。「お水を飲む量が増えた」「尿の色が薄い」といった小さなサインを、感覚ではなく記録で把握することが重要です。</p>
+                </div>
+                <div class="bg-pet-bg p-6 rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition">
+                    <div class="text-pet-accent text-3xl mb-4"><i class="ph-fill ph-tooth"></i></div>
+                    <p class="font-bold text-lg mb-2">見落としがちなデンタルケア</p>
+                    <p class="text-sm opacity-80 leading-relaxed">猫は虫歯にはなりにくいですが、アルカリ性の口腔内環境により「歯周病」になりやすい生き物です。口内炎からの食欲不振を防ぐため、日々のケアが必要です。</p>
+                </div>
+                <div class="bg-pet-bg p-6 rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition">
+                    <div class="text-pet-primary text-3xl mb-4"><i class="ph-fill ph-armchair"></i></div>
+                    <p class="font-bold text-lg mb-2">完全室内飼いのストレスと肥満</p>
+                    <p class="text-sm opacity-80 leading-relaxed">安全な室内飼育は寿命を延ばしましたが、運動不足による肥満や、環境変化の少なさからくる特発性膀胱炎など、新たな課題も。適切な体重管理(BCS)と環境作りが求められます。</p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-pet-light p-8 rounded-3xl">
+                <p class="text-lg leading-relaxed font-bold text-pet-text">
+                    愛猫の小さなサインを見逃すまいとする、その責任感は素晴らしい愛情です。<br>
+                    しかし、自分一人で完璧を目指し、精神論で向き合うと飼い主さんが疲弊してしまいます。<br>
+                    <span class="text-pet-primary text-xl block mt-4">定期的な「健康診断」と、便利な「アイテム」に頼ること。<br>それが、人と猫が無理なく長く、笑顔で暮らすための秘訣です。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ライフステージ別ケア (インプットに基づく追加セクション) -->
+    <section id="lifestage" class="py-16 bg-pet-bg">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold inline-block relative">
+                    年齢に合わせた適切なケアを
+                    <div class="section-title-line"></div>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 子猫・若齢期 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-pet-accent">
+                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        <i class="ph-fill ph-baby text-pet-accent text-2xl"></i> 子猫〜維持期 (〜6歳)
+                    </h3>
+                    <ul class="text-sm space-y-3 opacity-80">
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-accent mt-0.5"></i> 基礎免疫をつくる適切なワクチン接種</li>
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-accent mt-0.5"></i> 歯磨き習慣のスタートアップ</li>
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-accent mt-0.5"></i> 避妊・去勢手術後の体重管理（肥満予防）</li>
+                    </ul>
+                </div>
+                <!-- プレシニア期 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-pet-primary">
+                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        <i class="ph-fill ph-cat text-pet-primary text-2xl"></i> プレシニア期 (7歳〜)
+                    </h3>
+                    <ul class="text-sm space-y-3 opacity-80">
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-primary mt-0.5"></i> 代謝低下に合わせたフードへの切り替え</li>
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-primary mt-0.5"></i> 腎臓病などの早期発見のための定期健診</li>
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-primary mt-0.5"></i> 高低差を減らすなど、関節に優しい環境作り</li>
+                    </ul>
+                </div>
+                <!-- ハイシニア期 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-purple-400">
+                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        <i class="ph-fill ph-heartbeat text-purple-400 text-2xl"></i> シニア期 (11歳〜)
+                    </h3>
+                    <ul class="text-sm space-y-3 opacity-80">
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-purple-400 mt-0.5"></i> 消化しやすく、嗜好性の高い食事への工夫</li>
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-purple-400 mt-0.5"></i> 認知症（大声で鳴く等）の症状理解と対策</li>
+                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-purple-400 mt-0.5"></i> トイレの増設や滑り止めなど、徹底したバリアフリー化</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アフィリエイト導線となるカテゴリーセクション -->
+    <section id="category" class="py-16 md:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 inline-block relative">
+                    健康を「仕組み化」する厳選アイテム
+                    <div class="section-title-line"></div>
+                </h2>
+                <p class="mt-6 opacity-80">日々のルーティンに組み込むだけで、自然と健康管理ができるアイテムたち。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- カテゴリ1: フード -->
+                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1623387641177-e8a49c0b37b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="キャットフード" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
+                            <i class="ph-fill ph-fish-simple"></i> フード・栄養
+                        </div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">体をつくる<br>ライフステージ別フード</h3>
+                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
+                                下部尿路疾患や腎臓ケア、肥満対策など。年齢とBCS(体型)に合わせた最適なフード選びをサポートします。
+                            </p>
+                        </div>
+                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
+                            おすすめフードを見る <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- カテゴリ2: トイレ・記録 -->
+                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫のトイレ周辺" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
+                            <i class="ph-fill ph-toilet-paper"></i> 排泄・記録
+                        </div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">異変を逃さない<br>スマートトイレ</h3>
+                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
+                                体重や尿量、回数を自動記録。飼い主が不在でも、24時間体制で腎臓・泌尿器系のサインをキャッチします。
+                            </p>
+                        </div>
+                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
+                            スマートグッズを見る <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- カテゴリ3: デンタルケア -->
+                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫の顔アップ" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
+                            <i class="ph-fill ph-tooth"></i> 歯磨き・口内
+                        </div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">無理なく続ける<br>デンタルケアグッズ</h3>
+                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
+                                歯石になる前のプラークコントロール。嫌がる猫にも使いやすいジェルやシート、歯磨きおやつをご紹介。
+                            </p>
+                        </div>
+                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
+                            ケアアイテムを探す <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- カテゴリ4: 環境・給水 -->
+                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
+                    <div class="h-40 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="リラックスする猫" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
+                            <i class="ph-fill ph-house-line"></i> 生活環境
+                        </div>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">飲水量を増やす工夫と<br>ストレスフリー空間</h3>
+                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
+                                腎臓病予防のための自動給水器や、シニア猫の関節に優しいステップ、滑り止めマットなどの環境づくり。
+                            </p>
+                        </div>
+                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
+                            環境づくりアイテムへ <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 獣医療コラム・読みものセクション -->
+    <section id="articles" class="py-16 md:py-24 bg-pet-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-10">
+                <h2 class="text-2xl font-bold inline-block relative">
+                    獣医学の知恵を知るコラム
+                    <div class="section-title-line"></div>
+                </h2>
+                <a href="#" class="text-sm text-pet-primary hover:underline font-medium">すべて見る</a>
+            </div>
+
+            <div class="space-y-4">
+                <!-- 記事1: 歯磨き -->
+                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
+                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="猫の顔" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col justify-center py-1">
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="text-xs bg-pet-light text-pet-primary px-2 py-1 rounded font-bold">デンタルケア</span>
+                            <span class="text-xs opacity-60">2026.04.10</span>
+                        </div>
+                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">【獣医師解説】嫌がる猫の歯磨き。無理せず慣らす5つのステップ</h3>
+                        <p class="text-sm opacity-80 mt-2 line-clamp-2">「うちの子は絶対無理！」と諦める前に。いきなり歯ブラシを入れるのではなく、ペーストを舐めさせるところから始める、痛みの少ないオーラルケアの進め方。</p>
+                    </div>
+                </a>
+
+                <!-- 記事2: ワクチン -->
+                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
+                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="動物病院" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col justify-center py-1">
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="text-xs bg-pet-light text-pet-primary px-2 py-1 rounded font-bold">予防医療</span>
+                            <span class="text-xs opacity-60">2026.04.05</span>
+                        </div>
+                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">毎年のワクチンは本当に必要？最新ガイドラインから考える予防のかたち</h3>
+                        <p class="text-sm opacity-80 mt-2 line-clamp-2">WSAVA（世界小動物獣医師会）の最新ガイドラインでは、コアワクチンは3年に1回で十分な免疫が持続するとされています。愛猫のリスクに合わせた正しい接種頻度とは。</p>
+                    </div>
+                </a>
+
+                <!-- 記事3: 腎臓病・AIM -->
+                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
+                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="眠る猫" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col justify-center py-1">
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="text-xs bg-pet-light text-pet-primary px-2 py-1 rounded font-bold">病気・医療</span>
+                            <span class="text-xs opacity-60">2026.03.25</span>
+                        </div>
+                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">猫の慢性腎臓病と「AIM新薬」。最新情報といま私たちができること</h3>
+                        <p class="text-sm opacity-80 mt-2 line-clamp-2">長年「治らない」とされてきた猫の腎臓病に光を当てるAIM新薬。実用化に向けた最新状況と、薬に頼る前に家庭でできる飲水量の確保や食事管理について。</p>
+                    </div>
+                </a>
+                
+                <!-- 記事4: 救急・夜間 -->
+                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
+                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="警戒する猫" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                    <div class="flex flex-col justify-center py-1">
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded font-bold">救急対応</span>
+                            <span class="text-xs opacity-60">2026.03.10</span>
+                        </div>
+                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">「様子見」は危険？すぐに夜間救急へ行くべき症状リスト</h3>
+                        <p class="text-sm opacity-80 mt-2 line-clamp-2">呼吸が荒い、何度も吐く、オス猫のおしっこが出ない…。迷ったときに判断基準となる危険なサインと、夜間診療に電話する際の伝え方のコツ。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-pet-text text-white py-12 text-center md:text-left">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="ph-fill ph-cat text-3xl text-pet-primary"></i>
+                    <span class="font-bold text-xl tracking-wider">Cat Wellness Care</span>
+                </div>
+                <p class="text-sm opacity-80 leading-relaxed max-w-xs text-center md:text-left">
+                    気合いではなく、仕組みで愛する。<br>
+                    猫の健康寿命と、飼い主さんの心のゆとりを<br>獣医学の視点からサポートします。
+                </p>
+            </div>
+            
+            <div class="flex flex-col items-center md:items-start">
+                <h4 class="font-bold mb-4 text-pet-primary">カテゴリー</h4>
+                <ul class="space-y-2 text-sm opacity-80 text-center md:text-left">
+                    <li><a href="#" class="hover:text-pet-primary transition">ライフステージ別フード</a></li>
+                    <li><a href="#" class="hover:text-pet-primary transition">スマートトイレ・ヘルスケア</a></li>
+                    <li><a href="#" class="hover:text-pet-primary transition">デンタルケア（歯磨き）</a></li>
+                    <li><a href="#" class="hover:text-pet-primary transition">環境づくり・給水器</a></li>
+                </ul>
+            </div>
+
+            <div class="flex flex-col items-center md:items-start">
+                <h4 class="font-bold mb-4 text-pet-primary">運営情報</h4>
+                <ul class="space-y-2 text-sm opacity-80 text-center md:text-left">
+                    <li><a href="#" class="hover:text-pet-primary transition">当サイトの想いと運営理念</a></li>
+                    <li><a href="#" class="hover:text-pet-primary transition">プライバシーポリシー</a></li>
+                    <li><a href="#" class="hover:text-pet-primary transition">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-white/20 text-center text-sm opacity-60">
+            &copy; 2026 Cat Wellness Care. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
