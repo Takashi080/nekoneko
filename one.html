@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【獣医師監修】猫の腎臓病サインに気づくために。気合いの観察より「スマートトイレ」という選択肢 | Cat Wellness Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        pet: {
+                            bg: '#FFFbf2',
+                            primary: '#F59E0B',
+                            primaryHover: '#D97706',
+                            text: '#5c4b43',
+                            accent: '#10B981',
+                            light: '#FEF3C7',
+                            card: '#FFFFFF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { color: #5c4b43; background-color: #FFFbf2; }
+        /* 記事本文内のスタイル調整 */
+        .article-body h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #5c4b43;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #FEF3C7;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .article-body h2::before {
+            content: "🐾";
+            font-size: 1.2rem;
+        }
+        .article-body h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #5c4b43;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-left: 0.75rem;
+            border-left: 4px solid #F59E0B;
+        }
+        .article-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- ナビゲーションバー (トップページと共通) -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="pet_care_site.html" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-cat text-4xl text-pet-primary"></i>
+                    <span class="font-bold text-2xl tracking-wider text-pet-text">Cat Wellness Care</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="pet_care_site.html#category" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">毎日の仕組み</a>
+                    <a href="pet_care_site.html#articles" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">獣医療コラム</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 記事ヘッダー -->
+    <header class="bg-white border-b border-pet-light pt-8 pb-12">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- パンくずリスト -->
+            <nav class="text-sm opacity-60 mb-6 flex items-center gap-2">
+                <a href="pet_care_site.html" class="hover:text-pet-primary">ホーム</a>
+                <i class="ph-bold ph-caret-right"></i>
+                <a href="#" class="hover:text-pet-primary">排泄・記録</a>
+                <i class="ph-bold ph-caret-right"></i>
+                <span>腎臓病のサインと対策</span>
+            </nav>
+
+            <div class="flex gap-2 items-center mb-4">
+                <span class="bg-pet-light text-pet-primary px-3 py-1 rounded-full text-sm font-bold">病気・医療</span>
+                <span class="text-sm opacity-60 flex items-center gap-1"><i class="ph ph-clock"></i> 2026.04.10 更新</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-bold leading-tight mb-6">
+                【獣医師解説】猫の腎臓病サインに気づくために。気合いの観察より「スマートトイレ」という選択肢
+            </h1>
+
+            <!-- 著者情報 / 監修情報 -->
+            <div class="flex items-center gap-3 p-4 bg-pet-bg rounded-xl border border-pet-light/50">
+                <div class="w-12 h-12 rounded-full bg-pet-primary/20 flex items-center justify-center text-pet-primary text-2xl">
+                    <i class="ph-fill ph-stethoscope"></i>
+                </div>
+                <div>
+                    <p class="text-xs opacity-60">記事監修</p>
+                    <p class="font-bold text-sm">Cat Wellness Care 編集部（獣医学ガイドライン準拠）</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 記事コンテンツ -->
+    <main class="py-12">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- アイキャッチ画像 -->
+            <div class="rounded-2xl overflow-hidden mb-10 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="くつろぐ猫" class="w-full h-auto object-cover">
+            </div>
+
+            <!-- 目次 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-pet-light mb-10">
+                <p class="font-bold text-lg mb-4 flex items-center gap-2"><i class="ph-fill ph-list-bullets text-pet-primary"></i> 目次</p>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#section1" class="text-pet-text hover:text-pet-primary transition">1. 猫は「痛みを隠す」天才。感覚頼りの観察の限界</a></li>
+                    <li><a href="#section2" class="text-pet-text hover:text-pet-primary transition">2. 腎臓病の初期サイン「多飲多尿」を見逃さないために</a></li>
+                    <li><a href="#section3" class="text-pet-text hover:text-pet-primary transition">3. おすすめアイテム：飼い主のプレッシャーを減らす「スマートトイレ」</a></li>
+                    <li><a href="#section4" class="text-pet-text hover:text-pet-primary transition">4. まとめ：仕組みに頼ることが最大の愛情</a></li>
+                </ul>
+            </div>
+
+            <!-- 本文 -->
+            <article class="article-body">
+                <p class="text-lg font-medium">
+                    「最近、お水をよく飲むようになった気がする…」<br>
+                    愛猫のそんな変化に気づいたとき、あなたはどうしていますか？
+                </p>
+                <p>
+                    猫の宿命とも言える「慢性腎臓病」。最新のAIM新薬の研究が進むなど、獣医療は日々進歩していますが、それでも**「早期発見」**が健康寿命を左右することに変わりはありません。しかし、日中仕事で家を空ける飼い主さんが、猫の微細な変化を完璧に把握するのは至難の業です。
+                </p>
+
+                <h2 id="section1">猫は「痛みを隠す」天才。感覚頼りの観察の限界</h2>
+                <p>
+                    野生のなごりで、猫は自分の弱み（不調）を本能的に隠します。そのため、飼い主さんが「元気がない」「ご飯を食べない」と明確な異変に気づいた時には、すでに病状がかなり進行しているケースが少なくありません。
+                </p>
+                <p>
+                    獣医師のガイドラインでも、飼い主の**「感覚的な観察」ではなく「客観的なデータの記録」**が推奨されています。「もっと私がよく見てあげていれば…」と自責の念（バーンアウト）に駆られる前に、日々の記録を仕組み化することが大切です。
+                </p>
+
+                <h2 id="section2">腎臓病の初期サイン「多飲多尿」を見逃さないために</h2>
+                <p>
+                    腎臓の機能が落ち始めると、尿として水分を過剰に排出してしまい（多尿）、その分を補おうと水をたくさん飲むようになります（多飲）。
+                </p>
+                <div class="bg-red-50 p-5 rounded-xl mb-6 border border-red-100">
+                    <p class="font-bold text-red-700 mb-2 flex items-center gap-2"><i class="ph-fill ph-warning-circle"></i> 注意すべきサイン</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-red-800">
+                        <li>おしっこの塊（猫砂）が以前より大きくなった</li>
+                        <li>トイレに行く回数が増えた</li>
+                        <li>水のお皿が空になるのが早い</li>
+                        <li>おしっこの色が薄く、ニオイが少なくなった</li>
+                    </ul>
+                </div>
+
+                <h2 id="section3">おすすめアイテム：飼い主のプレッシャーを減らす「スマートトイレ」</h2>
+                <p>
+                    これらを正確に把握するには、24時間体制で記録できる**「スマート猫トイレ」**の導入が圧倒的におすすめです。<br>
+                    気合いで猫を見張るのではなく、優れたデバイスに頼ることで、飼い主さんの心のゆとりが生まれ、結果的に猫もリラックスして過ごせます。
+                </p>
+
+                <!-- アフィリエイト商品リンク用カード (再利用可能なコンポーネント) -->
+                <div class="my-10 bg-white border-2 border-pet-light rounded-2xl overflow-hidden shadow-md">
+                    <div class="bg-pet-light py-2 px-4 text-sm font-bold text-pet-text text-center border-b border-white/50">
+                        ＼編集部おすすめの健康管理デバイス／
+                    </div>
+                    <div class="p-6 flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-full md:w-1/3 flex-shrink-0">
+                            <!-- 商品画像プレースホルダー -->
+                            <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="スマート猫トイレ" class="w-full h-auto rounded-lg border border-gray-100">
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-xl font-bold mt-0 mb-2 border-none padding-0">自動記録スマート猫トイレ [商品名]</h3>
+                            <ul class="text-sm space-y-2 mb-4 opacity-80">
+                                <li class="flex items-start gap-2"><i class="ph-bold ph-check text-pet-accent mt-1"></i> スマホアプリと連動し、体重と尿量を自動記録</li>
+                                <li class="flex items-start gap-2"><i class="ph-bold ph-check text-pet-accent mt-1"></i> 多頭飼いでも、個体別にデータを識別可能</li>
+                                <li class="flex items-start gap-2"><i class="ph-bold ph-check text-pet-accent mt-1"></i> 獣医師とデータを共有しやすく、オンライン診療にも役立つ</li>
+                            </ul>
+                            <!-- アフィリエイトボタン -->
+                            <a href="#" class="block w-full text-center bg-pet-primary hover:bg-pet-primaryHover text-white font-bold py-3 px-4 rounded-xl transition duration-300 shadow-sm">
+                                詳細・ご購入はこちら（公式サイトへ） <i class="ph-bold ph-external-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="section4">まとめ：仕組みに頼ることが最大の愛情</h2>
+                <p>
+                    ペットの寿命が延びた今、介護や病気のケアは長期戦になります。飼い主さんが一人で責任を抱え込み、疲弊してしまうことは、愛猫も望んでいません。<br>
+                    便利なアイテムや獣医療の仕組みを上手に活用し、**「無理なく笑顔で続けられるケア」**を目指しましょう。
+                </p>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- フッター (トップページと共通) -->
+    <footer class="bg-pet-text text-white py-12 text-center md:text-left mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="ph-fill ph-cat text-3xl text-pet-primary"></i>
+                    <span class="font-bold text-xl tracking-wider">Cat Wellness Care</span>
+                </div>
+                <p class="text-sm opacity-80 leading-relaxed max-w-xs text-center md:text-left">
+                    気合いではなく、仕組みで愛する。<br>
+                    猫の健康寿命と、飼い主さんの心のゆとりを<br>獣医学の視点からサポートします。
+                </p>
+            </div>
+            <!-- ... その他フッター項目（省略・共通） ... -->
+        </div>
+        <div class="mt-12 pt-8 border-t border-white/20 text-center text-sm opacity-60">
+            &copy; 2026 Cat Wellness Care. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
