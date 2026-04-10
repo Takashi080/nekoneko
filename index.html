@@ -1,421 +1,386 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Wellness Care | 猫専門の健康と愛情ケア</title>
-    <!-- Google Fonts: 陽だまりのような温かいフォントを使用 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons: シンプルで可愛いアイコン -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
-                    },
-                    colors: {
-                        pet: {
-                            bg: '#FFFbf2',      // 陽だまりのようなクリーム色
-                            primary: '#F59E0B', // 温かみのあるアンバー（琥珀色）
-                            primaryHover: '#D97706',
-                            text: '#5c4b43',    // 柔らかいブラウンのテキスト
-                            accent: '#10B981',  // 健康を連想させる優しいグリーン
-                            light: '#FEF3C7',   // 薄いイエロー
-                            card: '#FFFFFF'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        body { color: #5c4b43; background-color: #FFFbf2; }
-        
-        .hero-gradient {
-            background: linear-gradient(to right, rgba(255, 251, 242, 0.95) 0%, rgba(255, 251, 242, 0.7) 50%, rgba(255, 251, 242, 0.1) 100%);
-        }
-        @media (max-width: 768px) {
-            .hero-gradient {
-                background: linear-gradient(to bottom, rgba(255, 251, 242, 0.8) 0%, rgba(255, 251, 242, 0.95) 100%);
-            }
-        }
-        .section-title-line {
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 48px;
-            height: 4px;
-            background-color: #F59E0B;
-            border-radius: 2px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NekoCare ナビ 厳選コレクション</title>
+  
+  <!-- Tailwind CSS (スタイリング用) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- React & ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel (ブラウザでのJSXコンパイル用) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="font-sans antialiased">
+<body class="bg-orange-50">
+  <div id="root"></div>
 
-    <!-- ナビゲーションバー -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- ロゴ -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                    <i class="ph-fill ph-cat text-4xl text-pet-primary"></i>
-                    <span class="font-bold text-2xl tracking-wider text-pet-text">Cat Wellness Care</span>
+  <script type="text/babel">
+    const { useState } = React;
+
+    // --- アイコンコンポーネント (Lucideアイコンの代替) ---
+    const Heart = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>;
+    const Menu = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>;
+    const X = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>;
+    const ChevronRight = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>;
+    const Activity = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>;
+    const Smartphone = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>;
+    const CheckCircle2 = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>;
+    const Bell = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>;
+    const Droplets = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7 2.9 7 2.9s-2.29 6.16-2.29 6.16C3.57 10 3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 1 14 8.5c1.14.93 1.71 2.03 1.71 3.19 0 2.22-1.8 4.05-4 4.05-2.2 0-4-1.83-4-4.05 0-1.16.57-2.26 1.71-3.19"/><path d="M17 21.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S17 7.9 17 7.9s-2.29 6.16-2.29 6.16C13.57 15 13 16.1 13 17.25c0 2.22 1.8 4.05 4 4.05z"/></svg>;
+    const Dna = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15 2-3.46 5.14a2 2 0 0 1-2.91.4L6.9 6.1"/><path d="m2 15 3.46-5.14a2 2 0 0 1 2.91-.4L10.1 10.9"/><path d="m9 22 3.46-5.14a2 2 0 0 1 2.91-.4L17.1 17.9"/><path d="m22 9-3.46 5.14a2 2 0 0 1-2.91.4L13.9 13.1"/><path d="M6 18c1.38-1 3.65-2 6-2s4.62 1 6 2"/><path d="M6 6c1.38 1 3.65 2 6 2s4.62-1 6-2"/><path d="M18 12c-1.38-1-3.65-2-6-2s-4.62 1-6 2"/><path d="M18 12v.01"/><path d="M6 12v.01"/></svg>;
+    const Baby = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/></svg>;
+    const ShieldCheck = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>;
+    const Star = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+
+    // --- メインコンポーネント ---
+    const CatPortalSite = () => {
+      const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+      return (
+        <div className="min-h-screen bg-orange-50 font-sans text-gray-800">
+          {/* Header */}
+          <header className="bg-white shadow-sm sticky top-0 z-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center h-16">
+                <div className="flex items-center gap-2">
+                  <Heart className="w-6 h-6 text-orange-500 fill-current" />
+                  <span className="text-xl font-bold text-gray-900">NekoCare ナビ 厳選コレクション</span>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">健康の考え方</a>
-                    <a href="#lifestage" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">年齢別ケア</a>
-                    <a href="#category" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">毎日の仕組み</a>
-                    <a href="#articles" class="text-pet-text hover:text-pet-primary transition duration-300 font-medium">獣医療コラム</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-pet-text hover:text-pet-primary">
-                        <i class="ph ph-list text-3xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ヒーローセクション -->
-    <section class="relative bg-pet-bg overflow-hidden h-[500px] md:h-[600px] flex items-center">
-        <!-- 背景画像：陽だまりの猫 -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="日向ぼっこする猫" class="w-full h-full object-cover object-center" />
-        </div>
-        <div class="absolute inset-0 z-10 hero-gradient"></div>
-        
-        <div class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-xl">
-                <span class="inline-block py-1 px-3 rounded-full bg-pet-accent/20 text-pet-accent font-bold text-sm mb-4">
-                    獣医学的アプローチ × 優しい暮らし
-                </span>
-                <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
-                    「痛みを隠す」猫だからこそ。<br>
-                    気合いではなく、<br>
-                    <span class="text-pet-primary">「仕組み」</span>で守る健康。
-                </h1>
-                <p class="text-lg md:text-xl mb-8 leading-relaxed opacity-90 font-medium">
-                    野生のなごりで、不調を限界まで隠してしまう猫たち。<br>
-                    だからこそ、飼い主がプレッシャーを感じて見張るのではなく、毎日の「ごはん」や「トイレ」を優れたアイテムに置き換える。それが、一番の予防医療です。
-                </p>
-                <a href="#category" class="inline-flex items-center gap-2 bg-pet-primary hover:bg-pet-primaryHover text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-1">
-                    健康を支えるアイテムを見る
-                    <i class="ph-bold ph-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 共感・お悩みセクション (獣医学的インプットの昇華) -->
-    <section id="about" class="py-16 md:py-24 bg-white relative">
-        <div class="absolute top-0 right-10 text-pet-light opacity-30 text-9xl -z-10 transform -translate-y-1/2">
-            <i class="ph-fill ph-stethoscope"></i>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 inline-block relative">
-                「もっと早く気づいてあげれば…」を防ぐために
-                <div class="section-title-line"></div>
-            </h2>
-            <p class="mt-6 opacity-80 leading-relaxed max-w-2xl mx-auto">
-                病気が進行してからでは、治療の選択肢が狭まり、猫も人も苦しい思いをします。<br>
-                現代の獣医学が推奨する、家庭で意識すべき3つのポイントをご紹介します。
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-6 mt-12 text-left">
-                <div class="bg-pet-bg p-6 rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition">
-                    <div class="text-pet-primary text-3xl mb-4"><i class="ph-fill ph-drop"></i></div>
-                    <p class="font-bold text-lg mb-2">腎臓・尿路疾患への備え</p>
-                    <p class="text-sm opacity-80 leading-relaxed">猫の宿命とも言える腎臓トラブル（慢性腎不全など）。「お水を飲む量が増えた」「尿の色が薄い」といった小さなサインを、感覚ではなく記録で把握することが重要です。</p>
-                </div>
-                <div class="bg-pet-bg p-6 rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition">
-                    <div class="text-pet-accent text-3xl mb-4"><i class="ph-fill ph-tooth"></i></div>
-                    <p class="font-bold text-lg mb-2">見落としがちなデンタルケア</p>
-                    <p class="text-sm opacity-80 leading-relaxed">猫は虫歯にはなりにくいですが、アルカリ性の口腔内環境により「歯周病」になりやすい生き物です。口内炎からの食欲不振を防ぐため、日々のケアが必要です。</p>
-                </div>
-                <div class="bg-pet-bg p-6 rounded-2xl shadow-sm border border-yellow-100 hover:shadow-md transition">
-                    <div class="text-pet-primary text-3xl mb-4"><i class="ph-fill ph-armchair"></i></div>
-                    <p class="font-bold text-lg mb-2">完全室内飼いのストレスと肥満</p>
-                    <p class="text-sm opacity-80 leading-relaxed">安全な室内飼育は寿命を延ばしましたが、運動不足による肥満や、環境変化の少なさからくる特発性膀胱炎など、新たな課題も。適切な体重管理(BCS)と環境作りが求められます。</p>
-                </div>
-            </div>
-
-            <div class="mt-12 bg-pet-light p-8 rounded-3xl">
-                <p class="text-lg leading-relaxed font-bold text-pet-text">
-                    愛猫の小さなサインを見逃すまいとする、その責任感は素晴らしい愛情です。<br>
-                    しかし、自分一人で完璧を目指し、精神論で向き合うと飼い主さんが疲弊してしまいます。<br>
-                    <span class="text-pet-primary text-xl block mt-4">定期的な「健康診断」と、便利な「アイテム」に頼ること。<br>それが、人と猫が無理なく長く、笑顔で暮らすための秘訣です。</span>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ライフステージ別ケア (インプットに基づく追加セクション) -->
-    <section id="lifestage" class="py-16 bg-pet-bg">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl font-bold inline-block relative">
-                    年齢に合わせた適切なケアを
-                    <div class="section-title-line"></div>
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- 子猫・若齢期 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-pet-accent">
-                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
-                        <i class="ph-fill ph-baby text-pet-accent text-2xl"></i> 子猫〜維持期 (〜6歳)
-                    </h3>
-                    <ul class="text-sm space-y-3 opacity-80">
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-accent mt-0.5"></i> 基礎免疫をつくる適切なワクチン接種</li>
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-accent mt-0.5"></i> 歯磨き習慣のスタートアップ</li>
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-accent mt-0.5"></i> 避妊・去勢手術後の体重管理（肥満予防）</li>
-                    </ul>
-                </div>
-                <!-- プレシニア期 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-pet-primary">
-                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
-                        <i class="ph-fill ph-cat text-pet-primary text-2xl"></i> プレシニア期 (7歳〜)
-                    </h3>
-                    <ul class="text-sm space-y-3 opacity-80">
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-primary mt-0.5"></i> 代謝低下に合わせたフードへの切り替え</li>
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-primary mt-0.5"></i> 腎臓病などの早期発見のための定期健診</li>
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-pet-primary mt-0.5"></i> 高低差を減らすなど、関節に優しい環境作り</li>
-                    </ul>
-                </div>
-                <!-- ハイシニア期 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-purple-400">
-                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
-                        <i class="ph-fill ph-heartbeat text-purple-400 text-2xl"></i> シニア期 (11歳〜)
-                    </h3>
-                    <ul class="text-sm space-y-3 opacity-80">
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-purple-400 mt-0.5"></i> 消化しやすく、嗜好性の高い食事への工夫</li>
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-purple-400 mt-0.5"></i> 認知症（大声で鳴く等）の症状理解と対策</li>
-                        <li class="flex gap-2 items-start"><i class="ph-bold ph-check text-purple-400 mt-0.5"></i> トイレの増設や滑り止めなど、徹底したバリアフリー化</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- アフィリエイト導線となるカテゴリーセクション -->
-    <section id="category" class="py-16 md:py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 inline-block relative">
-                    健康を「仕組み化」する厳選アイテム
-                    <div class="section-title-line"></div>
-                </h2>
-                <p class="mt-6 opacity-80">日々のルーティンに組み込むだけで、自然と健康管理ができるアイテムたち。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- カテゴリ1: フード -->
-                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1623387641177-e8a49c0b37b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="キャットフード" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
-                            <i class="ph-fill ph-fish-simple"></i> フード・栄養
-                        </div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">体をつくる<br>ライフステージ別フード</h3>
-                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
-                                下部尿路疾患や腎臓ケア、肥満対策など。年齢とBCS(体型)に合わせた最適なフード選びをサポートします。
-                            </p>
-                        </div>
-                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
-                            おすすめフードを見る <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- カテゴリ2: トイレ・記録 -->
-                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫のトイレ周辺" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
-                            <i class="ph-fill ph-toilet-paper"></i> 排泄・記録
-                        </div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">異変を逃さない<br>スマートトイレ</h3>
-                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
-                                体重や尿量、回数を自動記録。飼い主が不在でも、24時間体制で腎臓・泌尿器系のサインをキャッチします。
-                            </p>
-                        </div>
-                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
-                            スマートグッズを見る <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- カテゴリ3: デンタルケア -->
-                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="猫の顔アップ" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
-                            <i class="ph-fill ph-tooth"></i> 歯磨き・口内
-                        </div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">無理なく続ける<br>デンタルケアグッズ</h3>
-                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
-                                歯石になる前のプラークコントロール。嫌がる猫にも使いやすいジェルやシート、歯磨きおやつをご紹介。
-                            </p>
-                        </div>
-                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
-                            ケアアイテムを探す <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- カテゴリ4: 環境・給水 -->
-                <div class="bg-pet-bg rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group cursor-pointer border border-transparent hover:border-pet-primary/30 flex flex-col">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="リラックスする猫" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-pet-accent flex items-center gap-1">
-                            <i class="ph-fill ph-house-line"></i> 生活環境
-                        </div>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-lg font-bold mb-2 group-hover:text-pet-primary transition duration-300">飲水量を増やす工夫と<br>ストレスフリー空間</h3>
-                            <p class="text-xs opacity-80 mb-4 leading-relaxed">
-                                腎臓病予防のための自動給水器や、シニア猫の関節に優しいステップ、滑り止めマットなどの環境づくり。
-                            </p>
-                        </div>
-                        <div class="text-pet-primary font-bold text-sm flex items-center gap-1">
-                            環境づくりアイテムへ <i class="ph-bold ph-caret-right group-hover:translate-x-1 transition duration-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 獣医療コラム・読みものセクション -->
-    <section id="articles" class="py-16 md:py-24 bg-pet-bg">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-10">
-                <h2 class="text-2xl font-bold inline-block relative">
-                    獣医学の知恵を知るコラム
-                    <div class="section-title-line"></div>
-                </h2>
-                <a href="#" class="text-sm text-pet-primary hover:underline font-medium">すべて見る</a>
-            </div>
-
-            <div class="space-y-4">
-                <!-- 記事1: 歯磨き -->
-                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
-                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="猫の顔" class="w-full h-full object-cover rounded-xl">
-                    </div>
-                    <div class="flex flex-col justify-center py-1">
-                        <div class="flex gap-2 items-center mb-2">
-                            <span class="text-xs bg-pet-light text-pet-primary px-2 py-1 rounded font-bold">デンタルケア</span>
-                            <span class="text-xs opacity-60">2026.04.10</span>
-                        </div>
-                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">【獣医師解説】嫌がる猫の歯磨き。無理せず慣らす5つのステップ</h3>
-                        <p class="text-sm opacity-80 mt-2 line-clamp-2">「うちの子は絶対無理！」と諦める前に。いきなり歯ブラシを入れるのではなく、ペーストを舐めさせるところから始める、痛みの少ないオーラルケアの進め方。</p>
-                    </div>
-                </a>
-
-                <!-- 記事2: ワクチン -->
-                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
-                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="動物病院" class="w-full h-full object-cover rounded-xl">
-                    </div>
-                    <div class="flex flex-col justify-center py-1">
-                        <div class="flex gap-2 items-center mb-2">
-                            <span class="text-xs bg-pet-light text-pet-primary px-2 py-1 rounded font-bold">予防医療</span>
-                            <span class="text-xs opacity-60">2026.04.05</span>
-                        </div>
-                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">毎年のワクチンは本当に必要？最新ガイドラインから考える予防のかたち</h3>
-                        <p class="text-sm opacity-80 mt-2 line-clamp-2">WSAVA（世界小動物獣医師会）の最新ガイドラインでは、コアワクチンは3年に1回で十分な免疫が持続するとされています。愛猫のリスクに合わせた正しい接種頻度とは。</p>
-                    </div>
-                </a>
-
-                <!-- 記事3: 腎臓病・AIM -->
-                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
-                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="眠る猫" class="w-full h-full object-cover rounded-xl">
-                    </div>
-                    <div class="flex flex-col justify-center py-1">
-                        <div class="flex gap-2 items-center mb-2">
-                            <span class="text-xs bg-pet-light text-pet-primary px-2 py-1 rounded font-bold">病気・医療</span>
-                            <span class="text-xs opacity-60">2026.03.25</span>
-                        </div>
-                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">猫の慢性腎臓病と「AIM新薬」。最新情報といま私たちができること</h3>
-                        <p class="text-sm opacity-80 mt-2 line-clamp-2">長年「治らない」とされてきた猫の腎臓病に光を当てるAIM新薬。実用化に向けた最新状況と、薬に頼る前に家庭でできる飲水量の確保や食事管理について。</p>
-                    </div>
-                </a>
                 
-                <!-- 記事4: 救急・夜間 -->
-                <a href="#" class="flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-2xl hover:shadow-md transition duration-300 group border border-transparent hover:border-pet-primary/20">
-                    <div class="w-full sm:w-48 h-32 flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="警戒する猫" class="w-full h-full object-cover rounded-xl">
-                    </div>
-                    <div class="flex flex-col justify-center py-1">
-                        <div class="flex gap-2 items-center mb-2">
-                            <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded font-bold">救急対応</span>
-                            <span class="text-xs opacity-60">2026.03.10</span>
-                        </div>
-                        <h3 class="font-bold text-lg group-hover:text-pet-primary transition duration-300 leading-snug">「様子見」は危険？すぐに夜間救急へ行くべき症状リスト</h3>
-                        <p class="text-sm opacity-80 mt-2 line-clamp-2">呼吸が荒い、何度も吐く、オス猫のおしっこが出ない…。迷ったときに判断基準となる危険なサインと、夜間診療に電話する際の伝え方のコツ。</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
+                {/* Desktop Navigation */}
+                <nav className="hidden md:flex space-x-8">
+                  <a href="#philosophy" className="text-gray-600 hover:text-orange-500 transition font-medium">私たちの考え</a>
+                  <a href="#catlog" className="text-gray-600 hover:text-orange-500 transition font-medium">1. 現在の見守り</a>
+                  <a href="#pontely" className="text-gray-600 hover:text-orange-500 transition font-medium">2. 未来の予測</a>
+                  <a href="#onekosama" className="text-gray-600 hover:text-orange-500 transition font-medium">3. 環境の最適化</a>
+                </nav>
 
-    <!-- フッター -->
-    <footer class="bg-pet-text text-white py-12 text-center md:text-left">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
-            <div class="flex flex-col items-center md:items-start">
-                <div class="flex items-center gap-2 mb-4">
-                    <i class="ph-fill ph-cat text-3xl text-pet-primary"></i>
-                    <span class="font-bold text-xl tracking-wider">Cat Wellness Care</span>
+                {/* Mobile menu button */}
+                <div className="md:hidden flex items-center">
+                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 text-gray-600">
+                    {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  </button>
                 </div>
-                <p class="text-sm opacity-80 leading-relaxed max-w-xs text-center md:text-left">
-                    気合いではなく、仕組みで愛する。<br>
-                    猫の健康寿命と、飼い主さんの心のゆとりを<br>獣医学の視点からサポートします。
-                </p>
-            </div>
-            
-            <div class="flex flex-col items-center md:items-start">
-                <h4 class="font-bold mb-4 text-pet-primary">カテゴリー</h4>
-                <ul class="space-y-2 text-sm opacity-80 text-center md:text-left">
-                    <li><a href="#" class="hover:text-pet-primary transition">ライフステージ別フード</a></li>
-                    <li><a href="#" class="hover:text-pet-primary transition">スマートトイレ・ヘルスケア</a></li>
-                    <li><a href="#" class="hover:text-pet-primary transition">デンタルケア（歯磨き）</a></li>
-                    <li><a href="#" class="hover:text-pet-primary transition">環境づくり・給水器</a></li>
-                </ul>
+              </div>
             </div>
 
-            <div class="flex flex-col items-center md:items-start">
-                <h4 class="font-bold mb-4 text-pet-primary">運営情報</h4>
-                <ul class="space-y-2 text-sm opacity-80 text-center md:text-left">
-                    <li><a href="#" class="hover:text-pet-primary transition">当サイトの想いと運営理念</a></li>
-                    <li><a href="#" class="hover:text-pet-primary transition">プライバシーポリシー</a></li>
-                    <li><a href="#" class="hover:text-pet-primary transition">お問い合わせ</a></li>
-                </ul>
+            {/* Mobile Navigation */}
+            {isMenuOpen && (
+              <div className="md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1">
+                <a href="#philosophy" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-md">私たちの考え</a>
+                <a href="#catlog" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-md">1. 現在の見守り (Catlog)</a>
+                <a href="#pontely" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-md">2. 未来の予測 (Pontely)</a>
+                <a href="#onekosama" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-md">3. 環境の最適化 (ONEKOSAMA)</a>
+              </div>
+            )}
+          </header>
+
+          {/* Hero Section */}
+          <section className="relative bg-white overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+              <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-10 px-4 sm:px-6 lg:px-8">
+                <main className="mt-10 mx-auto max-w-7xl sm:mt-12 md:mt-16 lg:mt-20 xl:mt-28">
+                  <div className="sm:text-center lg:text-left">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm mb-4">
+                      <ShieldCheck className="w-4 h-4 mr-2" />
+                      獣医学とテクノロジーが交差する、新しい猫ケア
+                    </div>
+                    <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl leading-tight">
+                      <span className="block">気合に頼らない、</span>
+                      <span className="block text-orange-500 mt-2">「仕組み」で守る愛猫生活</span>
+                    </h1>
+                    <p className="mt-5 text-base text-gray-600 sm:text-lg sm:max-w-xl sm:mx-auto md:text-xl lg:mx-0 leading-relaxed">
+                      言葉を話せない猫の微細な変化を、飼い主の「目」だけで24時間監視するのは不可能です。
+                      だからこそ、私たちはテクノロジーと最高品質のプロダクトを用いた<strong className="font-bold">「持続可能なケアの仕組み化」</strong>を提案します。
+                      誰一匹見捨てないための、現代の三種の神器をご紹介します。
+                    </p>
+                    <div className="mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
+                      <a href="#catlog" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-orange-500 hover:bg-orange-600 md:py-4 md:text-lg md:px-10 transition shadow-lg">
+                        厳選アイテムを見る
+                      </a>
+                    </div>
+                  </div>
+                </main>
+              </div>
             </div>
+            <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+              <img
+                className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-90"
+                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1000&q=80"
+                alt="テクノロジーと猫"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent lg:via-transparent"></div>
+            </div>
+          </section>
+
+          {/* Philosophy Section */}
+          <section id="philosophy" className="py-16 bg-gray-900 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 opacity-10 text-orange-500">
+              <Heart className="w-96 h-96" />
+            </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+              <h2 className="text-3xl font-extrabold mb-6">愛猫の健康をインフラ化する「3つの視点」</h2>
+              <p className="max-w-3xl mx-auto text-gray-300 leading-relaxed text-lg mb-12">
+                精神論で「もっと注意深く見よう」と誓うのではなく、システムに頼ることで、飼い主自身の心の余裕（心理的安全性）を保ちます。それが結果として、猫にとって最高の環境に繋がります。
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <Activity className="w-10 h-10 text-orange-400 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold mb-2">1. 現在の可視化</h3>
+                    <p className="text-gray-400 text-sm">日々の行動と排泄データを自動記録し、見逃しがちな「今の異常」をキャッチする。</p>
+                </div>
+                <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <Dna className="w-10 h-10 text-blue-400 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold mb-2">2. 未来の予測</h3>
+                    <p className="text-gray-400 text-sm">DNAレベルで遺伝的リスクを把握し、発症前に先回りして「未来の病気」を防ぐ。</p>
+                </div>
+                <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <Baby className="w-10 h-10 text-pink-400 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold mb-2">3. 環境の最適化</h3>
+                    <p className="text-gray-400 text-sm">人間の赤ちゃんと同じ安全基準のアイテムを用い、日常のストレスを根本から排除する。</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 1. Catlog Section (現在の可視化) */}
+          <section id="catlog" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-4 inline-flex items-center bg-orange-100 text-orange-700 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">
+                STEP 1 : 現在の見守り
+              </div>
+              <div className="lg:flex lg:items-center lg:gap-16">
+                <div className="lg:w-1/2">
+                  <h2 className="text-3xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    一緒にいられない時間も、<br/><span className="text-orange-500">24時間365日の自動記録。</span>
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    猫は痛みや不調を本能的に隠す動物です。Catlog（キャットログ）は、首輪型デバイスとトイレ用ボードで、「走る・食べる・寝る」から「排泄の量・回数」までを自動記録。
+                    アプリが些細な変化を通知し、手遅れになる前に動物病院へ向かうきっかけを作ります。
+                  </p>
+                  
+                  <div className="space-y-4 mb-8 bg-gray-50 p-6 rounded-2xl">
+                    <h4 className="font-bold text-gray-900 flex items-center"><Smartphone className="w-5 h-5 mr-2 text-orange-500"/> デバイスの特長</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500 mr-2 shrink-0 mt-0.5" />
+                        <span className="text-sm text-gray-700"><strong>Catlog（首輪）：</strong> わずか9g、ヒゲにあたらず静音。豊富なカラーで負担なくおしゃれに。</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500 mr-2 shrink-0 mt-0.5" />
+                        <span className="text-sm text-gray-700"><strong>Catlog Board：</strong> いつものトイレの下に置くだけ。砂も環境も変えずに4つの排泄データを記録。</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+                <div className="mt-10 lg:mt-0 lg:w-1/2 flex flex-col items-center">
+                  <div className="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 text-center w-full max-w-sm">
+                    <div className="text-sm font-bold text-orange-600 mb-3 flex items-center justify-center">
+                      <span className="relative flex h-3 w-3 mr-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                      </span>
+                      ＼ まずは詳細をチェック ／
+                    </div>
+                    <a href="https://px.a8.net/svt/ejp?a8mat=4B1ILJ+170MA+4WPO+601S1" rel="nofollow" target="_blank" className="inline-block">
+                      <img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=260411239002&wid=007&eno=01&mid=s00000022902001008000&mc=1" className="rounded-lg mx-auto" />
+                    </a>
+                    <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4B1ILJ+170MA+4WPO+601S1" alt="" />
+                    <p className="text-center text-xs text-gray-500 mt-4 font-medium flex items-center justify-center">
+                      ※Catlog公式サイトへ移動します <ChevronRight className="w-3 h-3 ml-1" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 2. Pontely Section (未来の予測) */}
+          <section id="pontely" className="py-20 bg-blue-50 border-t border-b border-blue-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-4 inline-flex items-center bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">
+                STEP 2 : 未来の予測
+              </div>
+              <div className="lg:flex lg:items-center lg:flex-row-reverse lg:gap-16">
+                <div className="lg:w-1/2">
+                  <h2 className="text-3xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    言葉を持たない猫だから、<br/><span className="text-blue-600">DNAにリスクを聴く。</span>
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    猫種によって、かかりやすい遺伝性疾患は異なります。Pontely（ポンテリー）は、アニコム先進医療研究所に委託された確かな遺伝子検査で、愛猫が生まれ持つリスクを特定。
+                    見た目からでは分からない健康状態を事前に把握し、最適な予防プランを組み立てることができます。
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div className="bg-white p-4 rounded-xl shadow-sm">
+                        <Star className="w-6 h-6 text-yellow-400 mb-2" />
+                        <h5 className="font-bold text-sm text-gray-900">WEBで簡単・完結</h5>
+                        <p className="text-xs text-gray-500 mt-1">検査結果はWEBでサクッと確認。紙の紛失リスクもありません。</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-xl shadow-sm">
+                        <Activity className="w-6 h-6 text-blue-500 mb-2" />
+                        <h5 className="font-bold text-sm text-gray-900">業界最短・最安水準</h5>
+                        <p className="text-xs text-gray-500 mt-1">1項目約5千円。約2週間で結果が分かるスピーディな対応。</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-xl shadow-sm sm:col-span-2 flex items-center">
+                        <ShieldCheck className="w-8 h-8 text-indigo-500 mr-3" />
+                        <div>
+                          <h5 className="font-bold text-sm text-gray-900">後から追加申込も可能</h5>
+                          <p className="text-xs text-gray-500 mt-1">一度の粘膜採取で、気になる項目をWEBからいつでも追加検査できます。</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-10 lg:mt-0 lg:w-1/2 flex flex-col items-center">
+                  <div className="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 text-center w-full max-w-sm">
+                    <div className="text-sm font-bold text-blue-600 mb-3 flex items-center justify-center">
+                      <span className="relative flex h-3 w-3 mr-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+                      </span>
+                      ＼ 検査キットのお申し込み ／
+                    </div>
+                    <a href="https://px.a8.net/svt/ejp?a8mat=4B1ILJ+D3OPU+46DW+BXYE9" rel="nofollow" target="_blank" className="inline-block">
+                      <img border="0" width="300" height="250" alt="" src="https://www24.a8.net/svt/bgt?aid=260411239022&wid=007&eno=01&mid=s00000019490002006000&mc=1" className="rounded-lg mx-auto" />
+                    </a>
+                    <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4B1ILJ+D3OPU+46DW+BXYE9" alt="" />
+                    <p className="text-center text-xs text-gray-500 mt-4 font-medium flex items-center justify-center">
+                      ※Pontely公式サイトへ移動します <ChevronRight className="w-3 h-3 ml-1" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 3. ONEKOSAMA Section (環境の最適化) */}
+          <section id="onekosama" className="py-20 bg-rose-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-4 inline-flex items-center bg-rose-100 text-rose-700 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">
+                STEP 3 : 環境の最適化
+              </div>
+              <div className="lg:flex lg:items-center lg:gap-16">
+                <div className="lg:w-1/2">
+                  <h2 className="text-3xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    赤ちゃん向け商品と変わらない、<br/><span className="text-rose-500">圧倒的に優しいもの作り。</span>
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    ONEKOSAMA OINUSAMA（おねこさま・おいぬさま）は、ベビー・マタニティブランドが手掛けるペット用品のD2Cブランド。
+                    「ペットも家族の一員」という想いのもと、他のショップにはない高い安全性とデザイン性を両立したオリジナル商品を提供しています。
+                  </p>
+                  
+                  <ul className="space-y-4 mb-8">
+                    <li className="flex items-start">
+                      <div className="bg-rose-200 p-1.5 rounded-full mr-3 shrink-0"><Baby className="w-4 h-4 text-rose-700" /></div>
+                      <div>
+                        <span className="font-bold text-gray-900 block text-sm">安心の日本製＆高品質</span>
+                        <span className="text-sm text-gray-600">キャットタワー、猫砂、キャリー、スリングなど、毎日触れるものだからこそ妥協のない品質を。</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-rose-200 p-1.5 rounded-full mr-3 shrink-0"><Droplets className="w-4 h-4 text-rose-700" /></div>
+                      <div>
+                        <span className="font-bold text-gray-900 block text-sm">飼い主の負担を減らす「自動猫トイレ」</span>
+                        <span className="text-sm text-gray-600">常に清潔なトイレ環境を維持することは、猫の泌尿器トラブル予防の第一歩です。</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-rose-200 p-1.5 rounded-full mr-3 shrink-0"><Heart className="w-4 h-4 text-rose-700" /></div>
+                      <div>
+                        <span className="font-bold text-gray-900 block text-sm">日常を彩る特別なアイテム</span>
+                        <span className="text-sm text-gray-600">SNSで大反響のペット用袴・着物、リンクコーデなど、愛猫との生活をより豊かにするラインナップ。</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-10 lg:mt-0 lg:w-1/2 flex flex-col items-center">
+                  <div className="bg-white p-6 rounded-2xl shadow-xl border border-rose-100 hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 text-center w-full max-w-sm">
+                    <div className="text-sm font-bold text-rose-600 mb-3 flex items-center justify-center">
+                      <span className="relative flex h-3 w-3 mr-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+                      </span>
+                      ＼ 限定アイテムをチェック ／
+                    </div>
+                    <a href="https://px.a8.net/svt/ejp?a8mat=4B1ILJ+3KR1E+3FF2+HWPVL" rel="nofollow" target="_blank" className="inline-block">
+                      <img border="0" width="336" height="280" alt="" src="https://www25.a8.net/svt/bgt?aid=260411239006&wid=007&eno=01&mid=s00000015995003008000&mc=1" className="rounded-lg mx-auto max-w-full h-auto" />
+                    </a>
+                    <img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4B1ILJ+3KR1E+3FF2+HWPVL" alt="" />
+                    <p className="text-center text-xs text-gray-500 mt-4 font-medium flex items-center justify-center">
+                      ※ONEKOSAMA公式サイトへ移動します <ChevronRight className="w-3 h-3 ml-1" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Summary CTA Section */}
+          <section className="py-20 bg-gray-900 text-center">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-extrabold text-white mb-6">「愛情」を、「仕組み」という形に変えよう。</h2>
+              <p className="text-gray-300 mb-10 text-lg">
+                健康を祈るだけでは、命は守れません。<br className="hidden md:block"/>
+                遺伝子検査でリスクを知り、高品質なアイテムで環境を整え、IoTデバイスで24時間見守る。<br className="hidden md:block"/>
+                この3つのステップが、現代の飼い主ができる最大の愛情表現です。
+              </p>
+              <div className="flex justify-center space-x-6 text-gray-400">
+                <div className="flex flex-col items-center">
+                    <div className="bg-orange-500/20 p-4 rounded-full mb-2"><Activity className="w-8 h-8 text-orange-500" /></div>
+                    <span className="text-sm">Catlog</span>
+                </div>
+                <div className="flex flex-col items-center">
+                    <div className="bg-blue-500/20 p-4 rounded-full mb-2"><Dna className="w-8 h-8 text-blue-500" /></div>
+                    <span className="text-sm">Pontely</span>
+                </div>
+                <div className="flex flex-col items-center">
+                    <div className="bg-rose-500/20 p-4 rounded-full mb-2"><Baby className="w-8 h-8 text-rose-500" /></div>
+                    <span className="text-sm">ONEKOSAMA</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="bg-black text-gray-400 py-12 border-t border-gray-800">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Heart className="w-6 h-6 text-orange-500" />
+                  <span className="text-xl font-bold text-white">NekoCare ナビ</span>
+                </div>
+                <p className="text-sm max-w-md leading-relaxed">
+                  猫と飼い主の双方が、心身ともに健やかでいられる環境づくりをサポートします。「誰一匹見捨てない」社会を目指して、精神論に頼らない正しい知識と持続可能なインフラ（仕組み）をご提案しています。
+                </p>
+              </div>
+              <div className="md:text-right">
+                <h4 className="text-white font-bold mb-4">ご紹介サービス一覧</h4>
+                <ul className="space-y-2 text-sm">
+                  <li><a href="#catlog" className="hover:text-orange-400 transition">Catlog（行動・排泄記録）</a></li>
+                  <li><a href="#pontely" className="hover:text-orange-400 transition">Pontely（猫遺伝子検査）</a></li>
+                  <li><a href="#onekosama" className="hover:text-orange-400 transition">ONEKOSAMA（高品質ペット用品）</a></li>
+                </ul>
+              </div>
+            </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-sm text-center">
+              © 2026 NekoCare Navi. All rights reserved.
+            </div>
+          </footer>
         </div>
-        <div class="mt-12 pt-8 border-t border-white/20 text-center text-sm opacity-60">
-            &copy; 2026 Cat Wellness Care. All rights reserved.
-        </div>
-    </footer>
+      );
+    };
+
+    // レンダリング実行
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<CatPortalSite />);
+  </script>
+</body>
+</html>
 
 </body>
 </html>
